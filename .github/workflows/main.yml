@@ -1,0 +1,25 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v3
+
+      - name: install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install flex bison gcc gcc-multilib g++-multilib autoconf \
+          curl libc6-dev patch libreadline-dev
+
+      - name: build mipsel-ecoff-toolchain
+        run: |
+          sudo ./mipsel-ecoff-toolchain PREFIX=/usr/local/yaroze QUIET=1
+          makeclean
