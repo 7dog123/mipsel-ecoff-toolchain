@@ -22,4 +22,4 @@ jobs:
       - name: build mipsel-ecoff-toolchain
         run: |
           sudo ./mipsel-ecoff-toolchain PREFIX=/usr/local/yaroze QUIET=1
-          makeclean
+          make clean
